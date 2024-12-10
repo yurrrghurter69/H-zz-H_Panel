@@ -1,128 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>H-zz-H Panel</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #ffe4f7;
-            color: #4a004e;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            font-family: 'Roboto', sans-serif;
+            background-color: #121212;
+            color: #fff;
+            overflow-x: hidden;
         }
-
+        
         header {
-            width: 100%;
-            background-color: #ff66b2;
-            padding: 20px 0;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: #121212;
+            position: relative;
         }
 
         header img {
-            height: 80px;
-            margin-bottom: 10px;
+            height: 50px;
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            color: #4a004e;
-        }
-
-        main {
-            margin-top: 40px;
-            width: 90%;
-            max-width: 800px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .card {
-            background-color: #ffcce6;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7);
-        }
-
-        .card h2 {
-            margin: 0 0 10px 0;
-            font-size: 1.8rem;
-            color: #4a004e;
-        }
-
-        .card p {
-            margin: 0;
-            font-size: 1.1rem;
-        }
-
-        .button-container {
-            text-align: center;
+        nav {
             margin-top: 20px;
+            text-align: center;
         }
 
-        .button-container a {
-            text-decoration: none;
-            background-color: #ff66b2;
-            color: #ffffff;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: background-color 0.2s;
+        .content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #1d1d1d;
+            border-radius: 8px;
         }
 
-        .button-container a:hover {
-            background-color: #e60094;
+        h1, h2 {
+            text-align: center;
+            color: #eeb1f1;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        li {
+            background-color: #2a2a2a;
+            margin: 15px;
+            padding: 20px;
+            border-radius: 8px;
+            width: 280px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease-in-out;
+        }
+
+        li:hover {
+            background-color: #eeb1f1;
+            color: #121212;
+            transform: scale(1.05);
+        }
+
+        li h3 {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        li p {
+            font-size: 1em;
         }
 
         footer {
-            margin-top: 40px;
-            padding: 20px;
             text-align: center;
-            width: 100%;
-            background-color: #ff66b2;
-            color: #4a004e;
-            font-size: 0.9rem;
+            padding: 10px;
+            background-color: #121212;
+            color: #aaa;
+            font-size: 0.9em;
         }
+
+        footer a {
+            color: #eeb1f1;
+            text-decoration: none;
+        }
+
     </style>
 </head>
 <body>
-    <header>
-        <img src="logo.png" alt="H-zz-H Logo">
-        <h1>H-zz-H Panel</h1>
-    </header>
 
-    <main>
-        <div class="card">
-            <h2>Rat Panel</h2>
-            <p>Controlling PCs, remote access, and more.</p>
-        </div>
-        <div class="card">
-            <h2>Discord Tools</h2>
-            <p>Webhook exploiter and custom RPC features.</p>
-        </div>
-        <div class="card">
-            <h2>HWID</h2>
-            <p>HWID changer and spoofer for your devices.</p>
-        </div>
-        <div class="button-container">
-            <a href="users_expiration.json" target="_blank">View User Expiration Data</a>
-        </div>
-    </main>
+<header>
+    <img src="logo.png" alt="Logo">
+</header>
 
-    <footer>
-        &copy; 2024 H-zz-H Panel. All rights reserved.
-    </footer>
+<div class="content">
+    <h1>Willkommen zum H-zz-H Panel</h1>
+    <h2>Unsere Funktionen:</h2>
+    <ul>
+        <li>
+            <h3>Rat Panel</h3>
+            <p>Controlling PCS remote access and stuff</p>
+        </li>
+        <li>
+            <h3>Discord Tools</h3>
+            <p>Webhook exploiter and Custom RPC</p>
+        </li>
+        <li>
+            <h3>HWID</h3>
+            <p>HWID changer and spoofer</p>
+        </li>
+    </ul>
+</div>
+
+<footer>
+    <p>&copy; 2024 H-zz-H Panel | <a href="users_expiration.json">Users Expirations</a>
+</footer>
+
 </body>
 </html>
