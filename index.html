@@ -22,10 +22,21 @@
             padding: 20px;
             background-color: #121212;
             position: relative;
+            animation: fadeOutLogo 2s ease-out forwards;
         }
 
         header img {
             height: 50px;
+        }
+
+        /* Fade out animation */
+        @keyframes fadeOutLogo {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
         }
 
         nav {
