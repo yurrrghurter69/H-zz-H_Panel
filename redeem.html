@@ -25,24 +25,21 @@
             position: relative;
         }
 
-        /* Pink/black border around the logo without animation */
         header img {
             height: 50px;
-            border: 5px solid pink; /* Static pink border */
+            border: 5px solid pink;
             border-radius: 8px;
-            position: relative; /* For positioning the shadow image */
+            position: relative;
         }
 
-        /* Christmas shadow on the logo */
         header img + img {
             position: absolute;
             top: 0;
             left: 0;
-            z-index: -1; /* Place behind the logo */
-            height: 60px; /* Slightly larger than the logo */
+            z-index: -1;
+            height: 60px;
         }
 
-        /* Christmas Tree image */
         .christmas-tree {
             position: fixed;
             bottom: 0;
@@ -50,7 +47,6 @@
             width: 150px;
         }
 
-        /* Present image */
         .present {
             position: fixed;
             top: 0;
@@ -107,6 +103,44 @@
             color: #eeb1f1;
             text-decoration: none;
         }
+
+        /* Snowflake animation */
+        .snowflake {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            width: 5px;
+            height: 5px;
+            animation: snowflakes 10s linear forwards;
+            opacity: 1;
+            transition: opacity 1s ease-out;
+        }
+
+        @keyframes snowflakes {
+            to {
+                transform: translateY(30vh);
+            }
+        }
+
+        /* Pink/black style for "Users Expirations" link */
+        footer a:hover {
+            color: pink;
+            background-color: black;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        /* Christmas Snowflake Animation Styles */
+        .snowflake {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            width: 5px;
+            height: 5px;
+            animation: snowflakes 10s linear forwards;
+            opacity: 1;
+        }
+
     </style>
 </head>
 <body>
@@ -120,11 +154,10 @@
     <h1>Redeem Your Trial</h1>
     <h2>Enter your username to extend your trial by 1 day</h2>
 
-    <!-- Input for username and redeem button -->
     <input type="text" id="username" placeholder="Enter Username">
     <button onclick="redeem()">Redeem</button>
 
-    <p id="message"></p> <!-- This will display status messages -->
+    <p id="message"></p>
 </div>
 
 <footer>
@@ -132,7 +165,6 @@
     <p>&copy; 2024 H-zz-H Panel | <a href="users_expiration.json">Users Expirations</a> | <a href="index.html">Home-page</a></p>
 </footer>
 
-<!-- Christmas Images -->
 <img src="christmastree.png" alt="Christmas Tree" class="christmas-tree">
 <img src="present.png" alt="Present" class="present">
 
@@ -152,21 +184,15 @@
             return;
         }
 
-        // Check if username exists
         if (usersExpiration[username]) {
             const currentDate = new Date();
             const expirationDate = new Date(usersExpiration[username]);
-            
-            // Calculate the difference in days between the current date and expiration date
             const differenceInTime = expirationDate.getTime() - currentDate.getTime();
             const differenceInDays = differenceInTime / (1000 * 3600 * 24);
 
-            // Check if the expiration date is within 7 days from now
             if (differenceInDays >= 0 && differenceInDays <= 7) {
-                // Extend the trial by 1 day
                 expirationDate.setDate(expirationDate.getDate() + 1);
                 usersExpiration[username] = formatDate(expirationDate);
-                
                 messageElement.textContent = `Trial extended! New expiration date: ${usersExpiration[username]}`;
                 messageElement.style.color = "green";
             } else {
@@ -179,15 +205,46 @@
         }
     }
 
-    // Format date as DD.MM.YYYY
     function formatDate(date) {
         const day = String(date.getDate()).padStart(2, '0');
         const month = String(date.getMonth() + 1).padStart(2, '0');
         const year = date.getFullYear();
         return `${day}.${month}.${year}`;
     }
-</script>
 
+    // Create snowflake effect on cursor movement
+    document.body.addEventListener('mousemove', function(event) {
+        var snowflake = document.createElement('div');
+        snowflake.classList.add('snowflake');
+        
+        // Set random position of snowflakes near the cursor
+        snowflake.style.left = `${event.pageX + Math.random() * 20 - 10}px`;
+        snowflake.style.top = `${event.pageY + Math.random() * 20 - 10}px`;
+        
+        // Append snowflake to body
+        document.body.appendChild(snowflake);
+        
+        // Check if the snowflake collides with the buttons (li elements)
+        setTimeout(function() {
+            var elements = document.querySelectorAll('li, h1, h2, p');
+            elements.forEach(function(element) {
+                var snowflakeRect = snowflake.getBoundingClientRect();
+                var elementRect = element.getBoundingClientRect();
+                
+                // Check for collision
+                if (snowflakeRect.top < elementRect.bottom && snowflakeRect.bottom > elementRect.top &&
+                    snowflakeRect.left < elementRect.right && snowflakeRect.right > elementRect.left) {
+                    snowflake.style.opacity = 0; // Fade out snowflake when it collides
+                }
+            });
+        }, 50); 
+
+        // Remove snowflakes after animation completes (5 seconds or when opacity reaches 0)
+        setTimeout(function() {
+            snowflake.remove();
+        }, 5000); // Duration of snowflake animation
+    });
+</script>
 
 </body>
 </html>
