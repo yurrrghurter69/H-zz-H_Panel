@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H-zz-H Panel - Redeem</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #121212;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: #121212;
+            position: relative;
+        }
+
+        /* Pink/black border around the logo without animation */
+        header img {
+            height: 50px;
+            border: 5px solid pink; /* Static pink border */
+            border-radius: 8px;
+            position: relative; /* For positioning the shadow image */
+        }
+
+        /* Christmas shadow on the logo */
+        header img + img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Place behind the logo */
+            height: 60px; /* Slightly larger than the logo */
+        }
+
+        /* Christmas Tree image */
+        .christmas-tree {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 150px;
+        }
+
+        /* Present image */
+        .present {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 120px;
+        }
+
+        .content {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #1d1d1d;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        h1, h2 {
+            color: #eeb1f1;
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            width: 80%;
+        }
+
+        input {
+            background-color: #2a2a2a;
+            color: #fff;
+        }
+
+        button {
+            background-color: #eeb1f1;
+            color: #121212;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #d88bb1;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #121212;
+            color: #aaa;
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: #eeb1f1;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="logo.png" alt="Logo">
+    <img src="christmashad.png" alt="Christmas Shadow" class="logo-shadow">
+</header>
+
+<div class="content">
+    <h1>Redeem Your Trial</h1>
+    <h2>Enter your username to extend your trial by 1 day</h2>
+
+    <!-- Input for username and redeem button -->
+    <input type="text" id="username" placeholder="Enter Username">
+    <button onclick="redeem()">Redeem</button>
+
+    <p id="message"></p> <!-- This will display status messages -->
+</div>
+
+<footer>
+    <h9>Top #1 Cheating Service</h9>
+    <p>&copy; 2024 H-zz-H Panel | <a href="users_expiration.json">Users Expirations</a> | <a href="index.html">Home-page</a></p>
+</footer>
+
+<!-- Christmas Images -->
+<img src="christmastree.png" alt="Christmas Tree" class="christmas-tree">
+<img src="present.png" alt="Present" class="present">
+
+<script>
+    const usersExpiration = {
+        "H-zz-H": "12.12.2024", 
+        "PuppetKINGhaas": "01.01.2025"
+    };
+
+    function redeem() {
+        const username = document.getElementById('username').value.trim();
+        const messageElement = document.getElementById('message');
+
+        if (!username) {
+            messageElement.textContent = "Please enter a username.";
+            messageElement.style.color = "red";
+            return;
+        }
+
+        // Check if username exists
+        if (usersExpiration[username]) {
+            const currentDate = new Date();
+            const expirationDate = new Date(usersExpiration[username]);
+            
+            // Calculate the difference in days between the current date and expiration date
+            const differenceInTime = expirationDate.getTime() - currentDate.getTime();
+            const differenceInDays = differenceInTime / (1000 * 3600 * 24);
+
+            // Check if the expiration date is within 7 days from now
+            if (differenceInDays >= 0 && differenceInDays <= 7) {
+                // Extend the trial by 1 day
+                expirationDate.setDate(expirationDate.getDate() + 1);
+                usersExpiration[username] = formatDate(expirationDate);
+                
+                messageElement.textContent = `Trial extended! New expiration date: ${usersExpiration[username]}`;
+                messageElement.style.color = "green";
+            } else {
+                messageElement.textContent = "Sorry, you cannot redeem the trial after it's expired or beyond 7 days.";
+                messageElement.style.color = "red";
+            }
+        } else {
+            messageElement.textContent = "Username not found.";
+            messageElement.style.color = "red";
+        }
+    }
+
+    // Format date as DD.MM.YYYY
+    function formatDate(date) {
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+        return `${day}.${month}.${year}`;
+    }
+</script>
+
+
+</body>
+</html>
