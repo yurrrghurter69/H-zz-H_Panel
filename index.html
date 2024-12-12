@@ -25,24 +25,21 @@
             position: relative;
         }
 
-        /* Pink/black border around the logo without animation */
         header img {
             height: 50px;
-            border: 5px solid pink; /* Static pink border */
+            border: 5px solid pink; 
             border-radius: 8px;
-            position: relative; /* For positioning the shadow image */
+            position: relative; 
         }
 
-        /* Christmas shadow on the logo */
         header img + img {
             position: absolute;
             top: 0;
             left: 0;
-            z-index: -1; /* Place behind the logo */
-            height: 60px; /* Slightly larger than the logo */
+            z-index: -1; 
+            height: 60px; 
         }
 
-        /* Position the Christmas Tree image in the bottom-right corner */
         .christmas-tree {
             position: fixed;
             bottom: 0;
@@ -50,7 +47,6 @@
             width: 150px;
         }
 
-        /* Position the Present image in the top-left corner */
         .present {
             position: fixed;
             top: 0;
@@ -123,7 +119,6 @@
             text-decoration: none;
         }
 
-        /* Snowflake animation styles */
         .snowflake {
             position: absolute;
             background-color: white;
@@ -132,7 +127,7 @@
             height: 5px;
             animation: snowflakes 10s linear forwards;
             opacity: 1;
-            transition: opacity 1s ease-out; /* Smooth fade-out */
+            transition: opacity 1s ease-out; 
         }
 
         @keyframes snowflakes {
@@ -141,7 +136,6 @@
             }
         }
 
-        /* JavaScript to follow mouse and generate snowflakes */
     </style>
 </head>
 <body>
@@ -175,42 +169,35 @@
     <p>&copy; 2024 H-zz-H Panel | <a href="users_expiration.json">Users Expirations</a>
 </footer>
 
-<!-- Christmas Images -->
 <img src="christmastree.png" alt="Christmas Tree" class="christmas-tree">
 <img src="present.png" alt="Present" class="present">
 
 <script>
-    // Create snowflake effect on cursor movement
     document.body.addEventListener('mousemove', function(event) {
         var snowflake = document.createElement('div');
         snowflake.classList.add('snowflake');
         
-        // Set random position of snowflakes near the cursor
         snowflake.style.left = `${event.pageX + Math.random() * 20 - 10}px`;
         snowflake.style.top = `${event.pageY + Math.random() * 20 - 10}px`;
         
-        // Append snowflake to body
         document.body.appendChild(snowflake);
         
-        // Check if the snowflake collides with the buttons (li elements)
         setTimeout(function() {
             var elements = document.querySelectorAll('li, h1, h2, p');
             elements.forEach(function(element) {
                 var snowflakeRect = snowflake.getBoundingClientRect();
                 var elementRect = element.getBoundingClientRect();
                 
-                // Check for collision
                 if (snowflakeRect.top < elementRect.bottom && snowflakeRect.bottom > elementRect.top &&
                     snowflakeRect.left < elementRect.right && snowflakeRect.right > elementRect.left) {
-                    snowflake.style.opacity = 0; // Fade out snowflake when it collides
+                    snowflake.style.opacity = 0; 
                 }
             });
-        }, 50); // Check collision after snowflake is created
+        }, 50); 
 
-        // Remove snowflakes after animation completes (5 seconds or when opacity reaches 0)
         setTimeout(function() {
             snowflake.remove();
-        }, 5000); // Duration of snowflake animation
+        }, 5000); 
     });
 </script>
 
